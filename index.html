@@ -43,13 +43,15 @@ Leanplum.setVariables(variables);
 Leanplum.start(function(success) {
  console.log('Success: ' + success);
  console.log('Variables', Leanplum.getVariables());
-var title = Leanplum.getVariable('PageTitle');
 
 }); </script>
 
 	</head>
 
 	<body> 
+
+	<script type="text/javascript"> var title = Leanplum.getVariable('PageTitle'); </script>	
+
 	
 		<center>
 		<FONT FACE="tahoma"><br>
