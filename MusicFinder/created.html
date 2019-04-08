@@ -1,0 +1,117 @@
+<html>
+
+<head>
+    <title>Account Created | Karima's MusicFinder</title>
+    
+        <!-- jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    
+        <!-- start Mixpanel -->
+        <script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+        for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
+        mixpanel.init("karima", {cross_subdomain_cookie : false});</script><!-- end Mixpanel -->
+
+        <script type="text/javascript" charset="utf-8">
+
+    // Handler for .ready() called.
+        $( document ).ready(function() {
+        document.getElementById("name").innerHTML = getParameterByName("name");
+        document.getElementById("email").innerHTML = getParameterByName("email");
+        document.getElementById("age").innerHTML = getParameterByName("age");
+        document.getElementById("music").innerHTML = getParameterByName("music");
+        }); //end ready call
+
+    // Track page view for account created page  
+            mixpanel.track(
+            "Page View",
+            {"page_name": "created"}
+            );
+
+        function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        </script>
+
+         <script type="text/javascript" charset="utf-8">
+        
+    //identify
+        mixpanel.identify(getParameterByName("email"));
+    
+    //set people properties
+        function waitForIt(){
+            mixpanel.people.set({
+                "$name": getParameterByName("name"), 
+                "Age": getParameterByName("age"), 
+                "$email": getParameterByName("email"),
+                "Favorite Music": getParameterByName("music"),
+                'Account Type': 'Free', 
+                });
+                }
+        setTimeout(waitForIt, 1000);
+
+        </script>
+
+</head>
+
+<body>
+    <center>
+        <FONT FACE="tahoma"><center>
+
+        <h1>Account Created!</h1>
+        <p>Thank you for creating your account. You've sent us the following information:</p>
+        <b>Name:</b> <span id="name"></span><br>
+        <b>E-Mail:</b> <span id="email"></span><br>
+        <b>Age:</b> <span id="age"></span><br>
+        <b>Favorite Music:</b> <span id="music"></span><br><br>
+        <h2>Recommended Music</h2>
+        Sia - Cheap Thrills <a class="songs" id="ytsia" href="https://www.youtube.com/watch?v=nYh-n7EOtMA" target="_blank">[play]</a><br>
+        Rihanna ft. Drake - Work <a class="songs" id="ytrihanna" href="https://www.youtube.com/watch?v=HL1UzIK-flA" target="_blank">[play]</a><br><br>
+
+       
+        
+        <br>
+        <img src="images/musicline.jpg" width="600"><br>
+        <p>  <a id="homepage" href="index.html"> Home </a> | <a id="signup" href="signup.html"> Sign up </a> | <a id="explore" href="explore.html">Explore</a></p>
+        
+        </FONT>
+    </center>
+
+    <script>
+    // track clicks for links id #signup #explore #homepage
+        mixpanel.track_links('#signup', 'Link Clicked', {'link_name': 'signup'});
+
+        mixpanel.track_links('#explore', 'Link Clicked', {'link_name': 'explore'});
+
+        mixpanel.track_links('#homepage', 'Link Clicked', {'link_name': 'homepage'});
+
+    // track click for link id #ytsia #ytrihanna
+       mixpanel.track_links('#ytsia', 'Played Song',
+                            {   'Song Artist': 'Sia',
+                                'Song Title': 'Cheap Thrills',
+                                'Song Genre': 'Pop'
+                            });
+
+        mixpanel.track_links('#ytrihanna', 'Played Song',
+                            {   'Song Artist': 'Rihanna ft. Drake',
+                                'Song Title': 'Work',
+                                'Song Genre': 'Pop'
+                            });
+
+    // increment 'Played Song' events & track charge
+        $("#ytsia").click(function() {
+            console.log("yep"); 
+            mixpanel.people.increment('Played Songs', 1);
+            mixpanel.people.track_charge(1);
+        }); 
+
+        </script>
+</body>
+
+</html>
+
