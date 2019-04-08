@@ -16,14 +16,23 @@ var isDevelopmentMode = true;
 
 // Sample variables. This can be any JSON object.
 
-var variables = {
- items: {
-   color: 'red',
-   size: 20,
-   showBadges: true
- },
- showAds: true
-}; 
+// var variables = {
+//  items: {
+//    color: 'red',
+//    size: 20,
+//    showBadges: true
+//  },
+//  showAds: true
+// }; 
+
+Leanplum.setVariables({
+  PageTitle: "Karima's MusicFinder",
+});
+
+var variables = Leanplum.getVariables();
+//Gets a particular variable.
+var PageTitle = Leanplum.getVariable("Karima's MusicFinder");
+
 
 
 // We've inserted your Test API keys here for you :)
@@ -60,6 +69,10 @@ Leanplum.start(function(success) {
 		<FONT FACE="tahoma"><br>
 
 		<script>
+
+			// set UserID
+		Leanplum.start('karima123', {age: 30, gender: 'Female'}, callback);
+
 
 		// track page view in Leanplum
 		Leanplum.track("Page View", {"Page Name": "Index"});
