@@ -29,6 +29,8 @@ var variables = {
 	PageTitle: 'Karima`s MusicFinder'
 };
 
+var title = document.getElementById(title)
+
 
 // We've inserted your Test API keys here for you :)
 if (isDevelopmentMode) {
@@ -41,6 +43,8 @@ Leanplum.setVariables(variables);
 Leanplum.start(function(success) {
  console.log('Success: ' + success);
  console.log('Variables', Leanplum.getVariables());
+var title = Leanplum.getVariable('PageTitle');
+
 }); </script>
 
 	</head>
@@ -61,7 +65,7 @@ Leanplum.start(function(success) {
 
         </script>
 
-		<h1>Karima's MusicFinder</h1>
+		<h1 id="title">Karima's MusicFinder</h1>
 		<p>Let US find the music YOU love</p> 
 		<img src="https://raw.githubusercontent.com/KarimaEM/karimaEM.github.io/master/Images/musiclove.jpg" width="550">
 		<p> <a id="signup" href="signup.html"> Sign up </a> | <a id="explore" href="explore.html">Explore</a></p>
