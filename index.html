@@ -57,11 +57,15 @@ Leanplum.start(function(success) {
 		<FONT FACE="tahoma"><br>
 
 		<script>
+
+		// track page view in Leanplum
+		Leanplum.track("Page View", {Page Name: "Index"});
+
         // track click for link id #signup
-        mixpanel.track_links('#signup', 'Clicked Signup');
+       // mixpanel.track_links('#signup', 'Clicked Signup');
 
         // track click for link id #explore
-        mixpanel.track_links('#explore', 'Clicked Explore');
+       // mixpanel.track_links('#explore', 'Clicked Explore');
 
         </script>
 
