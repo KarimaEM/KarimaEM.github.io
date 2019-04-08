@@ -8,8 +8,11 @@
 
 		<script type="text/javascript" src="leanplum.min.js"></script>
 
+	<script type="text/javascript"> 
+
 // This value should be set to true only if you're developing on your server.
-	<script type="text/javascript"> var isDevelopmentMode = true; 
+
+var isDevelopmentMode = true; 
 
 // Sample variables. This can be any JSON object.
 
@@ -59,7 +62,7 @@ Leanplum.start(function(success) {
 		<script>
 
 		// track page view in Leanplum
-		Leanplum.track("Page View", {Page Name: "Index"});
+		Leanplum.track("Page View", {"Page Name": "Index"});
 
         // track click for link id #signup
        // mixpanel.track_links('#signup', 'Clicked Signup');
